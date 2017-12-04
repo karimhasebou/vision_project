@@ -12,7 +12,7 @@ im2_gray = cv2.cvtColor(im2,cv2.COLOR_BGR2GRAY)
 sz = im1.shape
  
 # Define the motion model
-warp_mode = cv2.MOTION_TRANSLATION
+warp_mode = cv2.MOTION_HOMOGRAPHY
  
 # Define 2x3 or 3x3 matrices and initialize the matrix to identity
 if warp_mode == cv2.MOTION_HOMOGRAPHY :
@@ -39,9 +39,18 @@ if warp_mode == cv2.MOTION_HOMOGRAPHY :
 else :
     # Use warpAffine for Translation, Euclidean and Affine
     im2_aligned = cv2.warpAffine(im2, warp_matrix, (sz[1],sz[0]), flags=cv2.INTER_LINEAR + cv2.WARP_INVERSE_MAP);
+
+cv2.resizeWindow("img1", 600, 600)
+cv2.resizeWindow("img2", 600, 600)
+cv2.resizeWindow("img2A", 600, 600)
+
+cv2.namedWindow('img1', cv2.WINDOW_NORMAL)
+cv2.namedWindow('img2', cv2.WINDOW_NORMAL)
+cv2.namedWindow('img2A', cv2.WINDOW_NORMAL) 
  
 # Show final results
-cv2.imshow("Image 1", im1)
-cv2.imshow("Image 2", im2)
-cv2.imshow("Aligned Image 2", im2_aligned)
+cv2.imshow("img1", im1)
+cv2.imshow("img2", im2)
+cv2.imshow("img2A", im2_aligned)
+
 cv2.waitKey(0)
