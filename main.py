@@ -13,7 +13,7 @@ sz = im1.shape
  
 # Define the motion model
 warp_mode = cv2.MOTION_AFFINE
-warp_mode = cv2.MOTION_EUCLIDEAN
+#warp_mode = cv2.MOTION_EUCLIDEAN
 #warp_mode = cv2.MOTION_TRANSLATION
 # Define 2x3 or 3x3 matrices and initialize the matrix to identity
 if warp_mode == cv2.MOTION_HOMOGRAPHY :
