@@ -4,8 +4,10 @@ from tkFileDialog import askopenfilename
 import cv2
 import numpy as np
 
-Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
-filenames = tkFileDialog.askopenfilenames(filetypes = (("jpeg files","*.jpg"),("all files","*.*"))) # show an "Open" dialog box and return the path to the selected file
+#Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
+#filenames = tkFileDialog.askopenfilenames(filetypes = (("jpeg files","*.jpg"),("all files","*.*"))) # show an "Open" dialog box and return the path to the selected file
+filenames = ['img1.jpg', 'img2.jpg', 'img3.jpg']
+
 
 if len(filenames) < 1:
     exit()
@@ -32,8 +34,8 @@ for idx in range(1,len(images_grayscale)):
     criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, number_of_iterations,  termination_eps)
     
     # Run the ECC algorithm. The results are stored in warp_matrix.
-    (cc, warp_matrix) = cv2. (images_grayscale[0], 
-        images_grayscafindTransformECCle[idx],warp_matrix, warp_mode, criteria)
+    (cc, warp_matrix) = cv2.findTransformECC(images_grayscale[0], 
+        images_grayscale[idx],warp_matrix, warp_mode, criteria)
     
     images[idx] = cv2.warpAffine(images[idx], warp_matrix, (sz[1],sz[0]), 
         flags=cv2.INTER_LINEAR + cv2.WARP_INVERSE_MAP);
@@ -46,9 +48,9 @@ images = np.median(images, axis=3).astype(images.dtype)
 
 print images.shape
 
-cv2.namedWindow('img1', cv2.WINDOW_NORMAL)
-cv2.resizeWindow("img1", 600, 600)
-cv2.imshow("img1", images)
+# cv2.namedWindow('img1', cv2.WINDOW_NORMAL)
+#cv2.resizeWindow("img1", 600, 600)
+cv2.imshow("s9ad", images)
 cv2.waitKey(0)
 
 '''
